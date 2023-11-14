@@ -1,27 +1,28 @@
 #!/usr/bin/python3
 """
-Module for Place class
+place.py module
 """
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """Inherits from BaseModel class
-
-     Attributes:
-        city_id (str): City id
-        user_id (str): User id
-        name (str): name of the place.
-        description (str): description of the place
-        number_rooms (int): number of rooms of the place
-        number_bathrooms (int): number of bathrooms of the place
-        max_guest (int): maximum number of guests of the place
-        price_by_night (int): price by night of the place
-        latitude (float): latitude of the place
-        longitude (float): longitude of the place
-        amenity_ids (list): list of Amenity ids
-
     """
+    Place module that inherit from the baseModel
+
+    Attributes:
+        city_id: The Place id
+        user_id: The Place user id
+        name: The Place name
+        description: The Place description
+        number_rooms: The Place number of rooms
+        number_bathrooms: The Place number of bathrooms
+        max_guest: The Place max guest
+        price_by_night: The Place price per night
+        latitude: The Place latitude
+        longitude: The Place longitude
+        amenity_ids: The Place amenity ids
+    """
+
     city_id = ""
     user_id = ""
     name = ""
@@ -32,4 +33,4 @@ class Place(BaseModel):
     price_by_night = 0
     latitude = 0.0
     longitude = 0.0
-    amenity_ids = []
+    amenity_ids = ""

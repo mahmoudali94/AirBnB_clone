@@ -1,189 +1,170 @@
 #!/usr/bin/python3
-"""Defines unittests for models/state.py.
-
-Unittest classes:
-    TestState_instantiation
-    TestState_save
-    TestState_to_dict
 """
-import os
-import models
+Unittest for the State class
+"""
 import unittest
-from datetime import datetime
-from time import sleep
+import pep8
+from os import path, remove
+import datetime
+import models
+from models import state
 from models.state import State
+from models.engine.file_storage import FileStorage
 
 
-class TestState_instantiation(unittest.TestCase):
-    """Unittests for testing instantiation of the State class."""
+class TestState(unittest.TestCase):
+    """define variables and methods"""
 
-    def test_no_args_instantiates(self):
-        self.assertEqual(State, type(State()))
-
-    def test_new_instance_stored_in_objects(self):
-        self.assertIn(State(), models.storage.all().values())
-
-    def test_id_is_public_str(self):
-        self.assertEqual(str, type(State().id))
-
-    def test_created_at_is_public_datetime(self):
-        self.assertEqual(datetime, type(State().created_at))
-
-    def test_updated_at_is_public_datetime(self):
-        self.assertEqual(datetime, type(State().updated_at))
-
-    def test_name_is_public_class_attribute(self):
-        st = State()
-        self.assertEqual(str, type(State.name))
-        self.assertIn("name", dir(st))
-        self.assertNotIn("name", st.__dict__)
-
-    def test_two_states_unique_ids(self):
-        st1 = State()
-        st2 = State()
-        self.assertNotEqual(st1.id, st2.id)
-
-    def test_two_states_different_created_at(self):
-        st1 = State()
-        sleep(0.05)
-        st2 = State()
-        self.assertLess(st1.created_at, st2.created_at)
-
-    def test_two_states_different_updated_at(self):
-        st1 = State()
-        sleep(0.05)
-        st2 = State()
-        self.assertLess(st1.updated_at, st2.updated_at)
-
-    def test_str_representation(self):
-        dt = datetime.today()
-        dt_repr = repr(dt)
-        st = State()
-        st.id = "123456"
-        st.created_at = st.updated_at = dt
-        ststr = st.__str__()
-        self.assertIn("[State] (123456)", ststr)
-        self.assertIn("'id': '123456'", ststr)
-        self.assertIn("'created_at': " + dt_repr, ststr)
-        self.assertIn("'updated_at': " + dt_repr, ststr)
-
-    def test_args_unused(self):
-        st = State(None)
-        self.assertNotIn(None, st.__dict__.values())
-
-    def test_instantiation_with_kwargs(self):
-        dt = datetime.today()
-        dt_iso = dt.isoformat()
-        st = State(id="345", created_at=dt_iso, updated_at=dt_iso)
-        self.assertEqual(st.id, "345")
-        self.assertEqual(st.created_at, dt)
-        self.assertEqual(st.updated_at, dt)
-
-    def test_instantiation_with_None_kwargs(self):
-        with self.assertRaises(TypeError):
-            State(id=None, created_at=None, updated_at=None)
-
-
-class TestState_save(unittest.TestCase):
-    """Unittests for testing save method of the State class."""
-
-    @classmethod
     def setUp(self):
-        try:
-            os.rename("file.json", "tmp")
-        except IOError:
-            pass
+        """
+        Sets the public class attributes of the State class back to ""
+        Method called to prepare the test fixture. This is called immediately
+        before calling the test method; other than AssertionError or SkipTest
+        """
+        State.name = ""
+        FileStorage._FileStorage__objects = {}
+        FileStorage._FileStorage__file_path = "file.json"
 
     def tearDown(self):
-        try:
-            os.remove("file.json")
-        except IOError:
-            pass
-        try:
-            os.rename("tmp", "file.json")
-        except IOError:
-            pass
+        """
+        Sets the public class attributes of the State class back to ""
+        Method called immediately after the test method has been called and
+        the result recorded
+        """
+        del State.name
+        del FileStorage._FileStorage__file_path
+        del FileStorage._FileStorage__objects
+        if path.exists("file.json"):
+            remove("file.json")
 
-    def test_one_save(self):
+    def test_pep8_conformance(self):
+        """Test that State conforms to PEP8"""
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['models/state.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
+
+    def test_class_method_presence(self):
+        """Test that the State methods are all present"""
+        l1 = dir(State)
+        self.assertIn('__init__', l1)
+        self.assertIn('save', l1)
+        self.assertIn('to_dict', l1)
+        self.assertIn('__str__', l1)
+
+    def test_class_attribute_presence(self):
+        """Test that the State attributes are all present"""
+        l1 = dir(State)
+        self.assertIn('name', l1)
+
+    def test_instance_method_presence(self):
+        """Test that the State instance has the same methods"""
+        l1 = dir(State())
+        self.assertIn('__init__', l1)
+        self.assertIn('save', l1)
+        self.assertIn('to_dict', l1)
+        self.assertIn('__str__', l1)
+
+    def test_instance_attribute_presence(self):
+        """Test that the State instance attributes are all present"""
+        l1 = dir(State())
+        self.assertIn('id', l1)
+        self.assertIn('updated_at', l1)
+        self.assertIn('created_at', l1)
+        self.assertIn('__class__', l1)
+        self.assertIn('name', l1)
+
+    def test_docstring_presence(self):
+        """Test that Module, Class, and methods all have a docstring"""
+        self.assertIsNot(state.__doc__, None)
+        self.assertIsNot(State.__doc__, None)
+        self.assertIsNot(State.__init__.__doc__, None)
+        self.assertIsNot(State.save.__doc__, None)
+        self.assertIsNot(State.to_dict.__doc__, None)
+        self.assertIsNot(State.__str__.__doc__, None)
+
+    def test_instantiation(self):
+        """Test proper instantiation of object 'User()'"""
+
         st = State()
-        sleep(0.05)
-        first_updated_at = st.updated_at
+        self.assertIsInstance(st, State)
+        self.assertIsInstance(st.id, str)
+        self.assertIsInstance(st.created_at, datetime.datetime)
+        self.assertIsInstance(st.updated_at, datetime.datetime)
+        self.assertIsInstance(st.__class__, type)
+
+        st.size = "tall"
+        l1 = dir(st)
+        self.assertIn('size', l1)
+        self.assertEqual(st.__dict__['size'], 'tall')
+
+        st.size = 'tall'
+        l2 = dir(st)
+        self.assertIn('size', l2)
+        self.assertEqual(st.__dict__['size'], 'tall')
+
+        st.age = 28
+        l3 = dir(st)
+        self.assertIn('age', l3)
+        self.assertEqual(st.__dict__['age'], 28)
+
+        st.age = 28.5
+        l4 = dir(st)
+        self.assertIn('age', l4)
+        self.assertEqual(st.__dict__['age'], 28.5)
+
+        st.age = None
+        l5 = dir(st)
+        self.assertIn('age', l5)
+        self.assertEqual(st.__dict__['age'], None)
+
+        st_kw1 = State(**{})
+        self.assertIsInstance(st_kw1, State)
+        self.assertIsInstance(st_kw1.id, str)
+        self.assertIsInstance(st_kw1.created_at, datetime.datetime)
+        self.assertIsInstance(st_kw1.updated_at, datetime.datetime)
+        self.assertIsInstance(st_kw1.__class__, type)
+
+        st_kw2 = State(**{"first_name": "John", "age": 25})
+        l6 = dir(st_kw2)
+        self.assertIn('first_name', l6)
+        self.assertIn('age', l6)
+        self.assertEqual(st_kw2.__dict__['first_name'], 'John')
+        self.assertEqual(st_kw2.__dict__['age'], 25)
+
+    def test_save(self):
+        """Test save method"""
+
+        st = State()
+        temp = st.__dict__['updated_at']
+        self.assertFalse(path.isfile('file.json'))
         st.save()
-        self.assertLess(first_updated_at, st.updated_at)
+        self.assertTrue(path.isfile('file.json'))
+        self.assertNotEqual(st.__dict__['updated_at'], temp)
+        temp = st.__dict__['updated_at']
+        models.storage.reload()
+        self.assertEqual(st.__dict__['updated_at'], temp)
 
-    def test_two_saves(self):
+    def test_to_dict(self):
+        """Test to_dict method"""
+
         st = State()
-        sleep(0.05)
-        first_updated_at = st.updated_at
-        st.save()
-        second_updated_at = st.updated_at
-        self.assertLess(first_updated_at, second_updated_at)
-        sleep(0.05)
-        st.save()
-        self.assertLess(second_updated_at, st.updated_at)
+        st.age = 28
+        st.size = "tall"
+        for k, v in st.__dict__.items():
+            if k != 'updated_at' and k != 'created_at':
+                self.assertIn(k, st.to_dict())
+                self.assertEqual(v, st.to_dict()[k])
+        self.assertEqual(st.to_dict()['__class__'], st.__class__.__name__)
+        self.assertEqual(st.to_dict()['updated_at'], st.updated_at.isoformat())
+        self.assertEqual(st.to_dict()['created_at'], st.created_at.isoformat())
+        self.assertEqual(st.to_dict()['age'], 28)
+        self.assertEqual(st.to_dict()['size'], 'tall')
+        self.assertIsInstance(st.to_dict(), dict)
 
-    def test_save_with_arg(self):
+    def test_str(self):
+        """Test __str__ method"""
+
         st = State()
-        with self.assertRaises(TypeError):
-            st.save(None)
-
-    def test_save_updates_file(self):
-        st = State()
-        st.save()
-        stid = "State." + st.id
-        with open("file.json", "r") as f:
-            self.assertIn(stid, f.read())
-
-
-class TestState_to_dict(unittest.TestCase):
-    """Unittests for testing to_dict method of the State class."""
-
-    def test_to_dict_type(self):
-        self.assertTrue(dict, type(State().to_dict()))
-
-    def test_to_dict_contains_correct_keys(self):
-        st = State()
-        self.assertIn("id", st.to_dict())
-        self.assertIn("created_at", st.to_dict())
-        self.assertIn("updated_at", st.to_dict())
-        self.assertIn("__class__", st.to_dict())
-
-    def test_to_dict_contains_added_attributes(self):
-        st = State()
-        st.middle_name = "Holberton"
-        st.my_number = 98
-        self.assertEqual("Holberton", st.middle_name)
-        self.assertIn("my_number", st.to_dict())
-
-    def test_to_dict_datetime_attributes_are_strs(self):
-        st = State()
-        st_dict = st.to_dict()
-        self.assertEqual(str, type(st_dict["id"]))
-        self.assertEqual(str, type(st_dict["created_at"]))
-        self.assertEqual(str, type(st_dict["updated_at"]))
-
-    def test_to_dict_output(self):
-        dt = datetime.today()
-        st = State()
-        st.id = "123456"
-        st.created_at = st.updated_at = dt
-        tdict = {
-            'id': '123456',
-            '__class__': 'State',
-            'created_at': dt.isoformat(),
-            'updated_at': dt.isoformat(),
-        }
-        self.assertDictEqual(st.to_dict(), tdict)
-
-    def test_contrast_to_dict_dunder_dict(self):
-        st = State()
-        self.assertNotEqual(st.to_dict(), st.__dict__)
-
-    def test_to_dict_with_arg(self):
-        st = State()
-        with self.assertRaises(TypeError):
-            st.to_dict(None)
-
-
-if __name__ == "__main__":
-    unittest.main()
+        string = '['+st.__class__.__name__+']'+' ('+st.id+') '+str(st.__dict__)
+        self.assertEqual(string, st.__str__())
