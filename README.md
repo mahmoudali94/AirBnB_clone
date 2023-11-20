@@ -1,39 +1,7 @@
 # Project: AirBnB Clone (@Holberton, @ALXAFRICA)
-<p align="center">
-  <img src="https://github.com/OmarDouiba/AirBnB_clone/blob/main/images/1.png">
-</p>
-
-## **0x00. AirBnB clone - The console**
 
 - This repository covers the Parte 1 of an Airbnb clone project in python
 - The full-stack project is divded into 7 parts
-
-
-|                                                      Parts                                                 |                    Description                    |
-| :--------------------------------------------------------------------------------------------------------  | :-----------------------------------------------  |
-| [1. Console](https://github.com/OmarDouiba/AirBnB_clone#project-airbnb-clone-holberton-alxafrica)                                               |   Data model management via command interpreter   |
-
-
-### Expected web static for the final product:
-
-<p align="center">
-  <img src="https://github.com/OmarDouiba/AirBnB_clone/blob/main/images/2.png">
-  <img src="https://github.com/OmarDouiba/AirBnB_clone/blob/main/images/3.png">
-</p>
-
-### Web Stack for building the product:
-
-<p align="center">
-  <img src="https://github.com/OmarDouiba/AirBnB_clone/blob/main/images/4.png">
-</p>
-
-### Schemas:
-
-<p align="center">
-  <img src="https://github.com/OmarDouiba/AirBnB_clone/blob/main/images/5.jpg">
-</p>
-
----
 
 ## Part 1: 0x00. AirBnB clone - The console
 
@@ -158,9 +126,3 @@ File Name | Description
 `review.py` | Defines the Review Class, a subclass of BaseModel
 `place.py` | Defines the Place Class, a subclass of BaseModel
 `tests/` | The test directory containing the unittest files for each Class
----
-
-## Authors
-
-* **DOUIBA OMAR** - [GitHub - DOUIBA OMAR](https://github.com/OmarDouiba) | [LinkedIn](https://www.linkedin.com/in/omar-douiba/) at [Holberton
-School & AlxAfrica](http://holbertonschool.com & https://www.alxafrica.com/).
