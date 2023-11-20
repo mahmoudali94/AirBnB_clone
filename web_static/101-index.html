@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirBnB</title>
+    <!-- CSS styles -->
+    <link rel="stylesheet" href="./styles/4-common.css">
+    <link rel="stylesheet" href="./styles/3-header.css">
+    <link rel="stylesheet" href="./styles/3-footer.css">
+    <link rel="stylesheet" href="./styles/6-filters.css">
+    <link rel="stylesheet" href="./styles/101-places.css">
+    <!-- Favicon -->
+    <link rel="icon" href="./images/icon.png">
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo"></div>
+        </div>
+    </header>
+    <div class="container">
+        <!-- Search Bar-->
+        <section class="filters clearfix">
+            <button class="btn btn_search">search</button>
+            <div class="locations">
+                <div class="filter-text">
+                    <h3>States</h3>
+                    <h4>California, Arizona...</h4>
+                </div>
+                <ul class="popover">
+                    <li>
+                        <h2>Arizona:</h2>
+                        <ul>
+                            <li>Page</li>
+                            <li>Page2</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h2>California:</h2>
+                        <ul>
+                            <li>San Francisco</li>
+                            <li>Los Altos</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="amenities">
+                <div class="filter-text">
+                    <h3>Amenities</h3>
+                    <h4>Internet, Kitchen...</h4>
+                </div>
+                <ul class="popover">
+                    <li>Internet</li>
+                    <li>TV</li>
+                    <li>Kitchen</li>
+                    <li>Iron</li>
+                </ul>
+            </div>
+        </section>
+        <!-- End Search Bar -->
+        <!-- Start Places -->
+        <section class="places">
+            <h1>places</h1>
+            <!-- Home section -->
+            <article class="place-home">
+                <div class="title-price">
+                    <h2>My home</h2>
+                    <div class="price_by_night">
+                        $80
+                    </div>
+                </div>
+                <div class="information">
+                    <div class="max_guest">
+                        2 guests
+                    </div>
+                    <div class="number_rooms">
+                        1 bedrooms
+                    </div>
+                    <div class="number_bathrooms">
+                        1 bathrooms
+                    </div>
+                </div>
+                <div class="user">
+                    <p>
+                        <span class="text-bold">
+                        Owner:</span> Jhon Doe
+                    </p>
+                </div>
+                <div class="description">
+                    <p>
+                        Lorem ipsum dolor sit amet 
+                        consectetur adipisicing elit. 
+                        Culpa expedita eaque neque.
+                        Sunt deserunt animi odit.
+                        dolorum dolores architecto 
+                        omnis laudantium minus.
+                        Et eius provident omnis 
+                        laudantium fuga?
+                    </p>
+                </div>
+                <div class="amenities">
+                    <h2>Amenities</h2>
+                    <ul>
+                        <li>
+                            TV
+                        </li>
+                        <li>
+                            WiFi
+                        </li>
+                        <li>
+                            Pet friendly
+                        </li>
+                    </ul>
+                </div>
+                <div class="reviews">
+                    <h2>2 Reviews</h2>
+                    <h3>From Bob Dylan the 27th January 2017</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet.
+                        Lorem ipsum dolor sit amet.
+                    </p>
+                    <h3>From Bob Dylan the 27th January 2017</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet.
+                        Lorem ipsum dolor sit amet.
+                    </p>
+                </div>
+            </article>
+            <!-- End Home section -->
+            <!-- House section -->
+            <article class="place-house">
+                <div class="title-price">
+                    <h2>Tiny house</h2>
+                    <div class="price_by_night">
+                        $65
+                    </div>
+                </div>
+                <div class="information">
+                    <div class="max_guest">
+                        2 guests
+                    </div>
+                    <div class="number_rooms">
+                        1 bedrooms
+                    </div>
+                    <div class="number_bathrooms">
+                        1 bathrooms
+                    </div>
+                </div>
+                <div class="user">
+                    <p>
+                        <span class="text-bold">
+                        Owner:</span> Jhon Doe
+                    </p>
+                </div>
+                <div class="description">
+                    <p>
+                        Lorem ipsum dolor sit amet 
+                        consectetur adipisicing elit. 
+                        Culpa expedita eaque neque.
+                        Sunt deserunt animi odit.
+                        dolorum dolores architecto 
+                        omnis laudantium minus.
+                        Et eius provident omnis 
+                        laudantium fuga?
+                    </p>
+                </div>
+                <div class="amenities">
+                    <h2>Amenities</h2>
+                    <ul>
+                        <li>
+                            Pet friendly
+                        </li>
+                    </ul>
+                </div>
+                <div class="reviews">
+                    <h2>2 Reviews</h2>
+                    <h3>From Bob Dylan the 27th January 2017</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet.
+                        Lorem ipsum dolor sit amet.
+                        Lorem ipsum dolor sit amet, consectetur 
+                        adipisicing elit. Dolorum consequatur 
+                        laboriosam ratione consectetur pariatur! 
+                        Dignissimos magni, atque numquam repellendus 
+                        eius corporis ab facere vero!
+                        Lorem ipsum dolor sit amet, consectetur 
+                        adipisicing elit. Dolorum consequatur 
+                        laboriosam ratione consectetur pariatur! 
+                        Dignissimos magni, atque numquam repellendus
+                        aperiam esse placeat voluptatum expedita quae, 
+                        eius corporis ab facere vero!
+                    </p>
+                </div>
+            </article>
+            <!-- End House section -->
+            <!-- Suite section -->
+            <article class="place-suite">
+                <div class="title-price">
+                    <h2>A suite</h2>
+                    <div class="price_by_night">
+                        $190
+                    </div>
+                </div>
+                <div class="information">
+                    <div class="max_guest">
+                        2 guests
+                    </div>
+                    <div class="number_rooms">
+                        1 bedrooms
+                    </div>
+                    <div class="number_bathrooms">
+                        1 bathrooms
+                    </div>
+                </div>
+                <div class="user">
+                    <p>
+                        <span class="text-bold">
+                        Owner:</span> Jhon Doe
+                    </p>
+                </div>
+                <div class="description">
+                    <p>
+                        Lorem ipsum dolor sit amet 
+                        consectetur adipisicing elit. 
+                        Culpa expedita eaque neque.
+                        Sunt deserunt animi odit.
+                        dolorum dolores architecto 
+                        omnis laudantium minus.
+                        Et eius provident omnis 
+                        laudantium fuga?
+                    </p>
+                </div>
+                <div class="amenities">
+                    <h2>Amenities</h2>
+                    <ul>
+                        <li>
+                            TV
+                        </li>
+                        <li>
+                            WiFi
+                        </li>
+                    </ul>
+                </div>
+                <div class="reviews">
+                    <h2>3 Reviews</h2>
+                    <h3>From Bob Dylan the 27th January 2017</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet.
+                        Lorem ipsum dolor sit amet.
+                    </p>
+                    <h3>From Jhon Doe the 20th January 2018</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet.
+                        Lorem ipsum dolor sit amet.
+                    </p>
+                    <h3>From Jhon Doe the 5th January 2019</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet.
+                        Lorem ipsum dolor sit amet.
+                    </p>
+                </div>
+            </article>
+            <!-- End Suite section -->
+        </section>
+        <!-- End Places -->
+    </div>
+    <footer>
+        <p>Best School</p>
+    </footer>
+</body>
+</html>
