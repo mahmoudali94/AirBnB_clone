@@ -1,0 +1,41 @@
+body
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: #484848;
+    font-size: 14px;
+    font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    /* overflow: hidden; */
+}
+.container
+{
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 2rem;
+}
+.btn
+{
+    padding: 1rem 1.75rem;
+    color: #FFFFFF;
+    background-color: #FF5A5F;
+    font-weight: 700;
+    text-transform: capitalize;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s linear;
+}
+.btn:hover
+{
+    /* color: #FF5A5F;
+    background-color: #FFFFFF; */
+    transition: all 0.3s linear;
+    opacity: 90%;
+}
+/* Fix float */
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
